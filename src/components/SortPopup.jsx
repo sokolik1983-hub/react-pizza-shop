@@ -2,7 +2,7 @@ import React from "react";
 
 function SortPopup({items}) {
 
-    let activeLiValue = items[0];
+    let activeLiValue = items[0].name;
     const [visiblePopup, setVisiblePopup] = React.useState(false);
 
     const [valueOfPopup, setValuePopup] = React.useState(activeLiValue);
@@ -13,8 +13,8 @@ function SortPopup({items}) {
         setVisiblePopup(!visiblePopup);
     }
 
-    const onSelectItem = (text, index) => {
-        setValuePopup(text);
+    const onSelectItem = (obj, index) => {
+        setValuePopup(obj);
         setNumPopup(index);
         setVisiblePopup(false);
     }
@@ -57,7 +57,7 @@ function SortPopup({items}) {
             {visiblePopup &&
             <div className="sort__popup">
                 <ul>
-                    {items && items.map((text, index) => <li className={numOfPopup === index ? 'active' : ''} onClick={() => onSelectItem(text, index) } key={`${text}_${index}`}>{text}</li>)}
+                    {items && items.map((obj, index) => <li className={numOfPopup === index ? 'active' : ''} onClick={() => onSelectItem(obj.name, index) } key={`${obj.type}_${index}`}>{obj.name}</li>)}
                 </ul>
             </div>
             }
